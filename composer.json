@@ -1,0 +1,50 @@
+{
+  "name": "hebinet/laravel-svg-icons",
+  "description": "Allows to inline svg icons via a simple blade directive",
+  "keywords": [
+    "hebinet",
+    "laravel-svg-icons"
+  ],
+  "homepage": "https://github.com/hebinet/laravel-svg-icons",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Markus Hebenstreit",
+      "email": "office@hebinet.at",
+      "homepage": "https://www.hebinet.at",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "illuminate/contracts": "5.8.*",
+      "illuminate/http": "5.8.*",
+    "illuminate/support": "5.8.*"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Hebinet\\SvgIcons\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Hebinet\\SvgIcons\\tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Hebinet\\SvgIcons\\SvgIconsServiceProvider"
+      ]
+    }
+  }
+}
