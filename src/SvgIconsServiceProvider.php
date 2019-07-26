@@ -8,6 +8,9 @@ use Illuminate\Support\ServiceProvider;
 
 class SvgIconsServiceProvider extends ServiceProvider
 {
+    /**
+     *
+     */
     public function boot()
     {
         if ($this->app->runningInConsole()) {
@@ -16,13 +19,14 @@ class SvgIconsServiceProvider extends ServiceProvider
             ], 'config');
         }
 
-        View::composer('hebinet::svgIcon', SvgIconsViewComposer::class);
-
-        Blade::directive('icon', function () {
-            return "<?php echo view('hebinet::svgIcon'); ?>";
+        Blade::directive('icon', function ($iconString) {
+            return "<?php echo (new " . Icon::class . "({$iconString}))->render(); ?>";
         });
     }
 
+    /**
+     *
+     */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/icons.php', 'icons');
