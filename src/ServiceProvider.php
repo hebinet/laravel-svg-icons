@@ -1,12 +1,9 @@
-<?php
+<?php namespace Hebinet\SvgIcons;
 
-namespace Hebinet\SvgIcons;
-
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
-class SvgIconsServiceProvider extends ServiceProvider
+class ServiceProvider extends LaravelServiceProvider
 {
     /**
      *

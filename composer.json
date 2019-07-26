@@ -43,7 +43,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Hebinet\\SvgIcons\\SvgIconsServiceProvider"
+        "Hebinet\\SvgIcons\\ServiceProvider"
       ]
     }
   }
