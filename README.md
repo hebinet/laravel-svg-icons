@@ -65,7 +65,7 @@ You can use it like this
 // Icon with additional size class
 @icon('fas fa-download fa-5x')
 
-// And heare with the additional title
+// And here with an additional title
 @icon('fas fa-download,Download button')
 @icon('fas fa-download fa-5x,Download button')
 ```
