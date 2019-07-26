@@ -7,4 +7,5 @@ return [
      * Defaults to the node install folder
      */
     'path_to_fontawesome' => env('SVG_FONTPATH', base_path('node_modules/@fortawesome/fontawesome-free/svgs')),
+
 ];
