@@ -18,8 +18,9 @@
   "require": {
     "php": "^7.2",
     "illuminate/contracts": "5.8.*",
-      "illuminate/http": "5.8.*",
-    "illuminate/support": "5.8.*"
+    "illuminate/http": "5.8.*",
+    "illuminate/support": "5.8.*",
+    "ext-dom": "*"
   },
   "require-dev": {
   },

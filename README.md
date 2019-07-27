@@ -26,12 +26,12 @@ npm install @fortawesome/fontawesome-free
 
 The path to the SVG Files in the npm package is configured by default.
 
-You can change the path via the config Parameter 'path_to_fontawesome' in 'config\icons.php'
+You can change the path via the config Parameter `path_to_fontawesome` in `config\icons.php`
 
 ### Add Font Awesome SVG CSS-Style
-To display the icons correctly you need to include additional css files which can be found in the npm '@fortawesome/fontawesome-free' package.
+To display the icons correctly you need to include additional css files which can be found in the npm `@fortawesome/fontawesome-free` package.
 
-I would recommend using Webpack to publish the file in the public/css directory.
+I would recommend using Webpack to publish the file in the `public/css` directory.
 
 ```js
 // Inside webpack.mix.js
@@ -40,11 +40,17 @@ mix.copy('node_modules/@fortawesome/fontawesome-free/css/svg-with-js.css', 'publ
 
 ```
 
-The 'svg-icons.css' file should now be included in the head-Section of your Site
+The `svg-icons.css` file should now be included in the head-Section of your Site
 ```html
 <link rel="stylesheet" href="{{ mix('/css/svg-icons.css') }}"/>
 ```
 
+To set the color of the icons correctly, you have to add the following style declaration in your global CSS file
+```css
+svg.svg-inline--fa {
+    fill: currentColor;
+}
+```
 
 ## Usage
 
