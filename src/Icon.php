@@ -48,13 +48,7 @@ class Icon
         $dom = new DOMDocument();
         $dom->load($filepath);
 
-        $parts = $this->getParts();
-        $addClasses = '';
-        if (count($parts) > 2) {
-            for ($i = 2; $i < count($parts); $i++) {
-                $addClasses .= ' ' . $parts[$i];
-            }
-        }
+        $addClasses = $this->getAdditionalClasses();
 
         foreach ($dom->getElementsByTagName('svg') as $item) {
             $item->setAttribute('class', 'svg-inline--fa' . $addClasses);
@@ -141,11 +135,28 @@ class Icon
      * @return string
      * @throws Exception
      */
-    private function getStyle()
+    public function getStyle()
     {
         $parts = $this->getParts();
 
         return $parts[0];
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getAdditionalClasses(): string
+    {
+        $parts = $this->getParts();
+        $addClasses = '';
+        if (count($parts) > 2) {
+            for ($i = 2; $i < count($parts); $i++) {
+                $addClasses .= ' ' . $parts[$i];
+            }
+        }
+
+        return $addClasses;
     }
 
     /**
