@@ -1,6 +1,6 @@
 # Laravel SVG Icons
 
-Allows to inline [Font Awesome 5+](https://fontawesome.com/)'s SVG icons via a simple Laravel Blade directive without Javascript.
+Allows to inline [Font Awesome 5+](https://fontawesome.com/)'s SVG icons without javascript via a simple Laravel Blade directive.
 
 ## Installation
 
@@ -11,25 +11,25 @@ You can install it using Composer:
 composer require hebinet/laravel-svg-icons
 ```
 
-Optionally, you can publish the config file of the package.
+Optionally, you can also publish the config file of the package.
 
 ```bash
 php artisan vendor:publish --provider="Hebinet\SvgIcons\ServiceProvider" --tag=config
 ```
 
 ### Install SVG font
-Additionally you need to install Font Awesome via npm:
+As a next step you need to install Font Awesome via npm:
 
 ```bash
 npm install @fortawesome/fontawesome-free
 ```
 
-The path to the SVG Files in the npm package is configured by default.
+The path to the SVG files in the npm package is configured by default.
 
-You can change the path via the config Parameter `path_to_fontawesome` in `config\icons.php`
+But you can change the path via the config parameter `path_to_fontawesome` in `config\icons.php` if you want to.
 
 ### Add Font Awesome SVG CSS-Style
-To display the icons correctly you need to include additional css files which can be found in the npm `@fortawesome/fontawesome-free` package.
+To display the icons correctly you need to add an additional css file which can be found in the npm `@fortawesome/fontawesome-free` package.
 
 I would recommend using Webpack to publish the file in the `public/css` directory.
 
@@ -40,12 +40,12 @@ mix.copy('node_modules/@fortawesome/fontawesome-free/css/svg-with-js.css', 'publ
 
 ```
 
-The `svg-icons.css` file should now be included in the head-Section of your Site
+Afterwards you need to add the  `svg-icons.css` file in the head section of your site.
 ```html
 <link rel="stylesheet" href="{{ mix('/css/svg-icons.css') }}"/>
 ```
 
-To set the color of the icons correctly, you have to add the following style declaration in your global CSS file
+In order to inherit the font color of the parent correctly you have to add the following style declaration in your global CSS file
 ```css
 svg.svg-inline--fa {
     fill: currentColor;
@@ -54,10 +54,10 @@ svg.svg-inline--fa {
 
 ## Usage
 
-You can add the new `@icon` blade directive to add the inline SVG icon.
-The argument for the directive is the same as you would use for Font Awesome Icon.
+You can now add the new `@icon` blade directive to add the inline SVG icon.
+The argument for the directive is the same as you would use for Font Awesome icons.
 
-You can use it like this
+You can use the directive as followed:
 ```
 @icon('{style} {icon} {optional addtitonal classes},{optional title}')
 ```
