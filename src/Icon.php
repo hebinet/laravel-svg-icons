@@ -170,7 +170,7 @@ class Icon
         $parts = $this->iconString;
         if (strpos($this->iconString, ',') !== false) {
             // Description has a title like 'fas fa-download,title'
-            list($parts, $title) = explode(',', $this->iconString);
+            list($parts, $title) = explode(',', $this->iconString, 2);
             $this->title = $title;
         }
 
