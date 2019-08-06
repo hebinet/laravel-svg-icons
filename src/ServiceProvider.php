@@ -14,6 +14,12 @@ class ServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/icons.php' => config_path('icons.php'),
             ], 'config');
+        } else {
+            $config = config('icons');
+            if ($config['route']['enabled']) {
+                $this->app['router']->get($config['route']['url'],
+                    IconController::class . '@show')->name($config['route']['name']);
+            }
         }
 
         Blade::directive('icon', function ($iconString) {

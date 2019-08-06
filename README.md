@@ -64,16 +64,54 @@ You can use the directive as followed:
 
 ### Examples
 
-```php
-// Plain icon
+Usage in a Blade view:
+```blade
+{{-- Plain icon --}}
 @icon('fas fa-download')
 
-// Icon with additional size class
+{{-- Icon with additional size class --}}
 @icon('fas fa-download fa-5x')
 
-// And here with an additional title
+{{-- And here with an additional title --}}
 @icon('fas fa-download,Download button')
 @icon('fas fa-download fa-5x,Download button')
+```
+
+Usage in a Controller method or normal PHP code:
+```php
+$icon = new Hebinet\SvgIcons\Icon('fas fa-download');
+
+$iconWithAddClass = new Hebinet\SvgIcons\Icon('fas fa-download fa-5x');
+
+$iconWithTitle = new Hebinet\SvgIcons\Icon('fas fa-download,Download Button');
+
+// You can now render the icon to a string and do what ever you want with it
+$svgContent = $icon->render();
+```
+
+## Additional Route
+
+If the setting `$config['route']['enabled']` is true (default: true),
+an additional route will be registered to provide an Url-Based fetch for the SVG Icon Content.
+
+With this route you can load the Icon via a normal GET-Operation, so you can use the Icon also in "Non Blade"-Scenarios like Vue-Components.
+
+You can use it like this:
+```
+/svgIcons/{style}/{icon}.svg
+or
+/svgIcons/{style}/{icon}.svg?title={title}
+```
+
+It will throw an `Symfony\Component\HttpKernel\Exception\NotFoundHttpException` if the requested icon doesn't exist.
+ 
+### Examples
+```
+// Plain icon
+/svgIcons/fas/fa-download.svg
+
+// And here with an additional title
+/svgIcons/fas/fa-download.svg?title=Download button
 ```
 
 ## Accessibility
