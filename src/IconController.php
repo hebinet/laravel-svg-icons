@@ -1,6 +1,7 @@
 <?php namespace Hebinet\SvgIcons;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class IconController
@@ -10,7 +11,7 @@ class IconController
      * @param $style
      * @param $icon
      *
-     * @return false|string
+     * @return Response
      */
     public function show(Request $request, $style, $icon)
     {
@@ -25,7 +26,8 @@ class IconController
         }
 
         try {
-            return (new Icon($iconString))->render();
+            return (new Response((new Icon($iconString))->render(), 200))
+                ->header('Content-Type', 'image/svg+xml');
         } catch (\Exception $e) {
             throw new NotFoundHttpException('SVG Icon not found');
         }

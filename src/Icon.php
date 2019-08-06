@@ -68,6 +68,20 @@ class Icon
     }
 
     /**
+     * @return false|string
+     * @throws Exception
+     */
+    public function renderPlain()
+    {
+        $filepath = $this->getFilePath();
+        if (!is_file($filepath)) {
+            throw new Exception('File ' . $filepath . ' does not exist.');
+        }
+
+        return file_get_contents($filepath);
+    }
+
+    /**
      * Returns the complete path to the svg file
      *
      * @return string
