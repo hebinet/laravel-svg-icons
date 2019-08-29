@@ -88,6 +88,29 @@ $iconWithTitle = new Hebinet\SvgIcons\Icon('fas fa-download,Download Button');
 // You can now render the icon to a string and do what ever you want with it
 $svgContent = $icon->render();
 ```
+Optionally you can omit the icon string from the constructor and instead provide it in the render method like this
+```php
+$icon = new Hebinet\SvgIcons\Icon();
+$svgContent = $icon->render('fas fa-download');
+```
+
+This package also provides an Icon Facade.
+Unfortunately, the way Facades work, you have to provide the icon string in the render method instead of the constructor.
+
+First you have to 'register' the Facade in you app.php file at the end of the alias array like this
+```php
+[
+    ...
+
+    'Icon' => Hebinet\SvgIcons\Facades\Icon::class,
+]
+```
+
+After that you can use the Facade like this
+```php
+$svgContent = Icon::render('fas fa-check');
+```
+
 
 ## Additional Route
 

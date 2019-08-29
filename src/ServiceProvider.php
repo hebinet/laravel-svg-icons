@@ -1,5 +1,6 @@
 <?php namespace Hebinet\SvgIcons;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
@@ -33,5 +34,10 @@ class ServiceProvider extends LaravelServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/icons.php', 'icons');
+
+        App::bind('icon', function()
+        {
+            return new Icon();
+        });
     }
 }

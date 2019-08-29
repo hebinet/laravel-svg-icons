@@ -8,7 +8,7 @@ class Icon
     /**
      * @var string
      */
-    private $iconString;
+    private $iconString = null;
 
     /**
      * @var array
@@ -25,9 +25,11 @@ class Icon
      *
      * @param string $iconString
      */
-    public function __construct($iconString)
+    public function __construct($iconString = null)
     {
-        $this->iconString = preg_replace('/\s+/', ' ', trim($iconString));
+        if (!is_null($iconString)) {
+            $this->setIcon($iconString);
+        }
 
         $this->config = config('icons');
     }
@@ -35,11 +37,19 @@ class Icon
     /**
      * Renders the given icon to html
      *
+     * @param null $icon
+     *
      * @return false|string
      * @throws Exception
      */
-    public function render()
+    public function render($icon = null)
     {
+        if (!is_null($icon)) {
+            $this->setIcon($icon);
+        }
+
+        $this->checkIconString();
+
         $filepath = $this->getFilePath();
         if (!is_file($filepath)) {
             throw new Exception('File ' . $filepath . ' does not exist.');
@@ -50,6 +60,7 @@ class Icon
 
         $addClasses = $this->getAdditionalClasses();
 
+        /** @var \DOMElement $item */
         foreach ($dom->getElementsByTagName('svg') as $item) {
             $item->setAttribute('class', 'svg-inline--fa' . $addClasses);
             $item->setAttribute('role', 'img');
@@ -68,11 +79,19 @@ class Icon
     }
 
     /**
+     * @param null $icon
+     *
      * @return false|string
      * @throws Exception
      */
-    public function renderPlain()
+    public function renderPlain($icon = null)
     {
+        if (!is_null($icon)) {
+            $this->setIcon($icon);
+        }
+
+        $this->checkIconString();
+
         $filepath = $this->getFilePath();
         if (!is_file($filepath)) {
             throw new Exception('File ' . $filepath . ' does not exist.');
@@ -194,5 +213,36 @@ class Icon
         }
 
         return $parts;
+    }
+
+    /**
+     * @param $iconString
+     *
+     * @return Icon
+     */
+    public function setIcon($iconString): Icon
+    {
+        $this->iconString = preg_replace('/\s+/', ' ', trim($iconString));
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function checkIconString(): void
+    {
+        if (is_null($this->iconString)) {
+            throw new Exception ('No Icon definition provided.');
+        }
+    }
+
+    /**
+     * @return false|string
+     * @throws Exception
+     */
+    public function __toString()
+    {
+        return $this->render();
     }
 }

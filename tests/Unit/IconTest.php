@@ -83,5 +83,19 @@ namespace {
             $this->assertStringEndsWith($icon->getDir() . "/" . $icon->getFilename() . ".svg", $icon->getFilePath());
             $this->assertIsString($icon->render());
         }
+
+        public function testIconWithoutIconStringInConstructor()
+        {
+            $icon = new \Hebinet\SvgIcons\Icon();
+
+            try {
+                $svg = $icon->render();
+                $this->fail('Exception not thrown.');
+            } catch (Exception $e) {
+                $this->assertContains('No Icon definition provided', $e->getMessage());
+            }
+
+            $this->assertIsString($icon->render('fas fa-download'));
+        }
     }
 }
