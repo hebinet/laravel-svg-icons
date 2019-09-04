@@ -92,7 +92,7 @@ namespace {
                 $svg = $icon->render();
                 $this->fail('Exception not thrown.');
             } catch (Exception $e) {
-                $this->assertContains('No Icon definition provided', $e->getMessage());
+                $this->assertStringContainsStringIgnoringCase('No Icon definition provided', $e->getMessage());
             }
 
             $this->assertIsString($icon->render('fas fa-download'));
