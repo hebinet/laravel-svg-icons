@@ -47,7 +47,10 @@
     "laravel": {
       "providers": [
         "Hebinet\\SvgIcons\\ServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "Icon": "Hebinet\\SvgIcons\\Facades\\Icon"
+      }
     }
   }
 }
